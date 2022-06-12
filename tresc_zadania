@@ -1,0 +1,128 @@
+# ćwiczenia na WebStack'a
+
+## Zadanie 1
+
+### Cel: Wyświeltnie tablic w JSX
+
+Zakladając, że macie tablicy danych nazw owoców, wyświetlcie każdą z nich w osobnych komponentach.
+Uwaga: musi działać poprawnie i wyświetlać wszystkie elementy dla tablic dowolnej długości.
+
+#### Przykładowa tablica danych:
+
+```
+["jabłko", "gruszka", "wiśnia", "śliwka", "banan"]
+```
+
+## Zadanie 2
+
+### Cel: Warunkowe wyświeltanie w zależności od wartości zmiennej
+
+Kliknięcie na przycisk zmienia wartość zmiennej nie zmieniając samego komponentu.
+Zmiana stylu ma wynikać z zmiany zmiennej.
+
+![](Zad2.gif)
+
+## Zadanie 3
+
+### Cel: Połączenie wyświetlania warunkowego oraz wyświetlania wybranych danych z tablic w JSC.
+
+Zakladając, że macie tablicy danych reprezętującej studentów różnych grup pewnej uczelni, wyświetlcie, w zależności od wybranej przez użytkownika grupy, dane o każdym studencie (jego imię i wiek).
+
+#### Przykładowa tablica danych:
+
+```
+[
+  {
+    id: "101",
+    students: [
+      { name: "Jan", age: 21 },
+      { name: "Michał", age: 19 },
+      { name: "Kuba", age: 20 },
+      { name: "Izabella", age: 16 },
+    ],
+  },
+  {
+    id: "102",
+    students: [
+      { name: "Marcin", age: 20 },
+      { name: "Maksim", age: 20 },
+      { name: "Kacper", age: 20 },
+    ],
+  },
+  {
+    id: "103",
+    students: [
+      { name: "Łukasz", age: 20 },
+      { name: "Marcin", age: 20 },
+      { name: "Mikolaj", age: 19 },
+      { name: "Kuba", age: 20 },
+      { name: "Izabella", age: 16 },
+    ],
+  }
+];
+```
+
+![](zad3.gif)
+
+## Zadanie 4
+
+### Cel: Napisanie własnego hook'a.
+
+Hook ma zwracać komponent wyświetlający w sobie liczbę jak i dwie funkcje, jedną do
+zwiększenia liczby o jeden, drugą do zmniejszenia liczby o jeden. Kod powinien wyświetlać
+element i zaimplementować w dowolny sposób obie funkcje, pozwalając zmieniać wartość
+wewnątrz komponentu.
+
+### Szablon funkcji:
+
+```
+function useCounter(initValue)
+```
+
+### Przykład:
+
+```
+function App() {
+  const [Component, oneUp, oneDown] = useCounter(10);
+
+  return ...
+}
+```
+
+### Wynik:
+
+Kod powinien wyświetlać komponent z obecną liczbą, która zaczyna się na podanej (np. 10). Jeśli
+początkowa liczba nie zostanie podana, ma zaczynać się od 0. Przyciski (przykładowo) mają odpowiednio
+zmieniać wyświetlaną liczbę o jeden w górę lub dół.
+
+## Zadanie 5
+
+### Cel: Napisanie własnego hook'a.
+
+Hook ma pozwolić nam zaimplementować funkcje która działa tak jak
+[setInterval](https://developer.mozilla.org/pl/docs/Web/API/Window/setInterval),
+z tą różnicą że zawsze będzie wykonywać najnowszą wersję funkcji, bez restartu
+timera przy zmianie funkcji.
+
+### Szablon funkcji:
+
+```
+function useInterval(callbackFn, interval)
+```
+
+### Przykład:
+
+```
+function App() {
+  const [count, setCount] = useState(0);
+
+  useInterval(() => setCount((state) => state + 1), 500);
+  useInterval(() => setCount((state) => state + 1), 500);
+
+  return <div>{count}</div>;
+}
+```
+
+### Wynik:
+
+Kod powinien zmieniać wartość count o 2 co pół sekundy
